@@ -7,7 +7,7 @@
 
 
 <title>Redirect</title>
-<script type="text/javascript"> // <![CDATA[
+<!-- <script type="text/javascript"> // <![CDATA[
     alert(navigator.userAgent)
 //iPhone Version:
 if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
@@ -26,6 +26,67 @@ else{
 }
 
  
-</script>
+</script> -->
+ <script type="text/javascript">
+var MOBILE_BASE_URL = "http://m.my-domain.com"
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0; i<ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') c = c.substring(1);
+    if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+  }
+  return "";
+}
+
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+d.toUTCString();
+  document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+var IS_IPAD = navigator.userAgent.match(/iPad/i) != null,
+IS_IPHONE = !IS_IPAD && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null)),
+IS_IOS = IS_IPAD || IS_IPHONE,
+IS_ANDROID = !IS_IOS && navigator.userAgent.match(/android/i) != null,
+IS_MOBILE = IS_IOS || IS_ANDROID;
+
+function open(has_appli) {
+  // If it's not an universal app, use IS_IPAD or IS_IPHONE
+  alert("i am here true")
+  setCookie("appli",true,1000);
+    
+  if (IS_IOS) {
+    if(has_appli) {
+      window.location = $("meta[property='al:ios:url']").attr("content") || $("meta[property='al:android:url']").attr("content");
+
+      setTimeout(function() {
+        // If the user is still here, open the App Store
+        if (!document.webkitHidden) {
+          window.location = 'http://itunes.apple.com/app/id' + $("meta[property='al:ios:app_store_id']").attr("content");
+        }
+      }, 25);
+    } else {
+    	window.location = 'http://itunes.apple.com/app/id'+$("meta[property='al:ios:app_store_id']").attr("content");
+    }
+
+  } else if (IS_ANDROID) {
+    window.location = 'intent:/'+$("meta[property='al:android:url']").attr("content").split(':/')[1]+'#Intent;package='+$("meta[property='al:android:package']").attr("content")+';scheme='+$("meta[property='al:android:url']").attr("content").split(':/')[0]+';launchFlags=268435456;end;';
+  }
+}
+
+$("#yes").click(function() { open(true); } );
+$("#no").click(function() { open(false); } );
+$("#mobile").click(function() {
+	window.location = MOBILE_BASE_URL + "/" + $("meta[property='al:android:url']").attr("content").split(':/')[1];
+} );
+
+if( (typeof $("meta[property='al:android:url']").attr("content") != "undefined" || typeof $("meta[property='al:ios:url']").attr("content") != "undefined") && IS_MOBILE) {
+  	$('#ask_for_app').modal('show');
+}
+  </script>
 </body>
 </html>
