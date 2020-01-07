@@ -100,10 +100,10 @@ IS_MOBILE = IS_IOS || IS_ANDROID;
 
 function open(has_appli) {
   // If it's not an universal app, use IS_IPAD or IS_IPHONE
-  alert(IS_IOS)
+  alert('i am here')
   setCookie("appli",true,1000);
     
-  if (IS_IOS) {
+ if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
 	  
     if(has_appli) {
       window.location = $("meta[property='al:ios:url']").attr("content") || $("meta[property='al:android:url']").attr("content");
