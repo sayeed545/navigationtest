@@ -29,7 +29,18 @@ else{
 </script> -->
  <script type="text/javascript">
 var MOBILE_BASE_URL = "http://m.my-domain.com"
+//iPhone Version:
+if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
+    open(true)
+}
+//Android Version:
+else if(navigator.userAgent.match(/android/i)) {
+     open(true)
+}
 
+else{
+  open(false)
+}
 function getCookie(cname) {
   var name = cname + "=";
   var ca = document.cookie.split(';');
