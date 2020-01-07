@@ -104,7 +104,7 @@ function open(has_appli) {
   setCookie("appli",true,1000);
     
  if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
-	   alert(document.getElementsByTagName('meta')['al:ios:app_store_id'].getAttribute('content'))
+	   alert(document.getElementsByTagName('meta')['al:ios:app_store_id'].getAttribute('content'));
     if(has_appli) {
       window.location = $("meta[property='al:ios:url']").attr("content") || $("meta[property='al:android:url']").attr("content");
 
