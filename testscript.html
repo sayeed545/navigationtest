@@ -3,40 +3,40 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta property=“al:android:package” content=“com.kheloapp” />
-<meta property=“al:android:url” content=“kheloapp://contest/49088302" />
-<meta property=“al:android:app_name” content=“App Links” />
- <meta property=“al:ios:url” content=“kheloapp://contest/49088302" />
-<meta property=“al:ios:app_store_id” content=“12345" />
-<meta property=“al:ios:app_name” content=“com.kheloapp” />
-<meta property=“al:web:should_fallback” content=“false” />
-<meta charset=“UTF-8”/>
-<meta content=“text/html”/>
+<meta property="al:android:package" content="com.kheloapp" />
+<meta property="al:android:url" content="kheloapp://contest/49088302" />
+<meta property="al:android:app_name" content="App Links" />
+ <meta property="al:ios:url" content="kheloapp://contest/49088302" />
+<meta property="al:ios:app_store_id" content="12345" />
+<meta property="al:ios:app_name" content="com.kheloapp" />
+<meta property="al:web:should_fallback" content="false" />
+<meta charset="UTF-8"/>
+<meta content="text/html"/>
 <!-- For Google -->
 <title>Ruler</title>
-<meta name=“description” content=“”/>
-<link rel=“canonical” href=“https://kheloapp.com”>
+<meta name="description" content=""/>
+<link rel="canonical" href="https://kheloapp.com">
 <!-- For Facebook -->
-<meta property=“og:title” content=“Ruler” />
-<meta property=“og:type” content=“article”/>
-<meta property=“og:description” content=“” />
-<meta property=“og:site_name” content=“pyckers” />
-<meta property=“og:url” content=“https://kheloapp.com” />
-<meta property=“og:image” content=“https://images.kheloapp.com/images/images/1576652259417.jpeg” />
-<meta property=“og:image:width” content=“1200" />
-<meta property=“og:image:height” content=“630" />
-<meta property=“article:publisher” content=“abcdef” />
-<meta property=“fb:app_id” content=“kheloapp” />
+<meta property="og:title" content="Ruler" />
+<meta property="og:type" content="article"/>
+<meta property="og:description" content="" />
+<meta property="og:site_name" content="pyckers" />
+<meta property="og:url" content="https://kheloapp.com" />
+<meta property="og:image" content="https://images.kheloapp.com/images/images/1576652259417.jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="article:publisher" content="abcdef" />
+<meta property="fb:app_id" content="kheloapp" />
 <!-- For Twitter -->
-<meta name=“twitter:card” content=“summary_large_image” />
-<meta name=“twitter:title” content=“Ruler” />
-<meta name=“twitter:description” content=“” />
-<meta name=“twitter:url” content=“https://kheloapp.com” />
-<meta name=“twitter:image” content=“https://images.kheloapp.com/images/images/1576652259417.jpeg” />
-<meta name=“twitter:site” content=“@pyckers” />
-<meta name=“twitter:creator” content=“@pyckers” />
-<meta property=“article:author” content=“https://facebook.com/kheloapp” />
-<meta property=“twitter:creator” content=“https://twitter.com/kheloapp” />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Ruler" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="https://kheloapp.com" />
+<meta name="twitter:image" content="https://images.kheloapp.com/images/images/1576652259417.jpeg" />
+<meta name="twitter:site" content="@pyckers" />
+<meta name="twitter:creator" content="@pyckers" />
+<meta property="article:author" content="https://facebook.com/kheloapp" />
+<meta property="twitter:creator" content="https://twitter.com/kheloapp" />
 
 
 <title>Redirectmobile</title>
@@ -100,10 +100,11 @@ IS_MOBILE = IS_IOS || IS_ANDROID;
 
 function open(has_appli) {
   // If it's not an universal app, use IS_IPAD or IS_IPHONE
-  alert("i am here true")
+ 
   setCookie("appli",true,1000);
     
   if (IS_IOS) {
+	   alert("i am in ios true")
     if(has_appli) {
       window.location = $("meta[property='al:ios:url']").attr("content") || $("meta[property='al:android:url']").attr("content");
 
@@ -120,6 +121,10 @@ function open(has_appli) {
   } else if (IS_ANDROID) {
     window.location = 'intent:/'+$("meta[property='al:android:url']").attr("content").split(':/')[1]+'#Intent;package='+$("meta[property='al:android:package']").attr("content")+';scheme='+$("meta[property='al:android:url']").attr("content").split(':/')[0]+';launchFlags=268435456;end;';
   }
+	else
+	{
+		window.location = "http://kheloapp.com";
+	}
 }
 
 $("#yes").click(function() { open(true); } );
