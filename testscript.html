@@ -104,7 +104,7 @@ function open(has_appli) {
   setCookie("appli",true,1000);
     
  if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
-	   alert($("meta[property='al:ios:url']").attr("content"))
+	   alert('i am in iphone')
     if(has_appli) {
       window.location = $("meta[property='al:ios:url']").attr("content") || $("meta[property='al:android:url']").attr("content");
 
@@ -118,11 +118,13 @@ function open(has_appli) {
     	window.location = 'http://itunes.apple.com/app/id'+$("meta[property='al:ios:app_store_id']").attr("content");
     }
 
-  } else if (IS_ANDROID) {
+  } else if(navigator.userAgent.match(/android/i)) {
+	   alert('i am in android')
     window.location = 'intent:/'+$("meta[property='al:android:url']").attr("content").split(':/')[1]+'#Intent;package='+$("meta[property='al:android:package']").attr("content")+';scheme='+$("meta[property='al:android:url']").attr("content").split(':/')[0]+';launchFlags=268435456;end;';
   }
 	else
 	{
+		 alert('i am in others')
 		window.location = "http://kheloapp.com";
 	}
 }
