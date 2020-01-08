@@ -57,7 +57,6 @@ else if(navigator.userAgent.match(/blackberry/i)) {
 else{
  window.location = "http://www.gmail.com";
 }
-
  
 </script> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -72,7 +71,6 @@ if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)
 else if(navigator.userAgent.match(/android/i)) {
      open(true)
 }
-
 else{
   open(false)
 }
@@ -86,43 +84,38 @@ function getCookie(cname) {
   }
   return "";
 }
-
 function setCookie(cname, cvalue, exdays) {
   var d = new Date();
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
   var expires = "expires="+d.toUTCString();
   document.cookie = cname + "=" + cvalue + "; " + expires;
 }
-
 var IS_IPAD = navigator.userAgent.match(/iPad/i) != null,
 IS_IPHONE = !IS_IPAD && ((navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null)),
 IS_IOS = IS_IPAD || IS_IPHONE,
 IS_ANDROID = !IS_IOS && navigator.userAgent.match(/android/i) != null,
 IS_MOBILE = IS_IOS || IS_ANDROID;
-
 function open(has_appli) {
   // If it's not an universal app, use IS_IPAD or IS_IPHONE
- console.log("property44444:::::::",document.getElementsByTagName("META")[2].content)
+ console.log("property55555:::::::",document.getElementsByTagName("META")[2].content)
   setCookie("appli",true,1000);
     
  if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
 	//   alert(document.getElementsByTagName('meta')['al:ios:app_store_id'].getAttribute('content'));
     if(has_appli) {
-      window.location = $("meta[property='al:ios:url']").attr("content") || $("meta[property='al:android:url']").attr("content");
-
+      window.location = document.getElementsByTagName("META")[4].content || document.getElementsByTagName("META")[2].content;
       setTimeout(function() {
         // If the user is still here, open the App Store
         if (!document.webkitHidden) {
-          window.location = 'http://itunes.apple.com/app/id' + $("meta[property='al:ios:app_store_id']").attr("content");
+          window.location = 'http://itunes.apple.com/app/id' + document.getElementsByTagName("META")[5].content;
         }
       }, 25);
     } else {
-    	window.location = 'http://itunes.apple.com/app/id'+$("meta[property='al:ios:app_store_id']").attr("content");
+    	window.location = 'http://itunes.apple.com/app/id'+document.getElementsByTagName("META")[5].content;
     }
-
   } else if(navigator.userAgent.match(/android/i)) {
 	   alert('i am in android')
-    window.location = 'intent:/'+$("meta[property='al:android:url']").attr("content").split(':/')[1]+'#Intent;package='+$("meta[property='al:android:package']").attr("content")+';scheme='+$("meta[property='al:android:url']").attr("content").split(':/')[0]+';launchFlags=268435456;end;';
+    window.location = 'intent:/'+document.getElementsByTagName("META")[2].content.split(':/')[1]+'#Intent;package='+document.getElementsByTagName("META")[1].content+';scheme='+document.getElementsByTagName("META")[2].content.split(':/')[0]+';launchFlags=268435456;end;';
   }
 	else
 	{
@@ -130,14 +123,12 @@ function open(has_appli) {
 		window.location = "http://kheloapp.com";
 	}
 }
-
 $("#yes").click(function() { open(true); } );
 $("#no").click(function() { open(false); } );
 $("#mobile").click(function() {
-	window.location = MOBILE_BASE_URL + "/" + $("meta[property='al:android:url']").attr("content").split(':/')[1];
+	window.location = MOBILE_BASE_URL + "/" + document.getElementsByTagName("META")[2].content.split(':/')[1];
 } );
-
-if( (typeof $("meta[property='al:android:url']").attr("content") != "undefined" || typeof $("meta[property='al:ios:url']").attr("content") != "undefined") && IS_MOBILE) {
+if( (typeof document.getElementsByTagName("META")[2].content != "undefined" || typeof document.getElementsByTagName("META")[2].content != "undefined") && IS_MOBILE) {
   	$('#ask_for_app').modal('show');
 }
   </script>
