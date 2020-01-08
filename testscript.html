@@ -61,6 +61,7 @@ else{
  
 </script> -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="./lib/jquery-3.3.1.min.js"></script>
 
  <script type="text/javascript">
 var MOBILE_BASE_URL = "http://m.my-domain.com"
@@ -102,7 +103,7 @@ IS_MOBILE = IS_IOS || IS_ANDROID;
 
 function open(has_appli) {
   // If it's not an universal app, use IS_IPAD or IS_IPHONE
- console.log("property22222:::::::",$("meta[property='al:ios:url']").attr("content"))
+ console.log("property33333:::::::",$("meta[property='al:ios:url']").attr("content"))
   setCookie("appli",true,1000);
     
  if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
